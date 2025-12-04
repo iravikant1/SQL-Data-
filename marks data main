@@ -1,0 +1,34 @@
+CREATE TABLE subjects (
+    subject_id INT AUTO_INCREMENT PRIMARY KEY,
+    subject_name VARCHAR(50) NOT NULL
+);
+INSERT INTO subjects (subject_name) VALUES
+('Mathematics'),
+('Science'),
+('English'),
+('Social Studies'),
+('Computer Science'),
+('Hindi'),
+('Physics'),
+('Chemistry');
+CREATE TABLE student_marks (
+    mark_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    subject_id INT NOT NULL,
+    marks INT CHECK (marks BETWEEN 0 AND 100),
+    exam_name VARCHAR(50),
+    exam_date DATE DEFAULT CURRENT_DATE,
+    
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
+);
+INSERT INTO student_marks (student_id, subject_id, marks, exam_name)
+VALUES
+(1, 1, 88, 'Term 1'),   -- Mathematics
+(1, 2, 92, 'Term 1'),   -- Science
+(1, 3, 81, 'Term 1'),   -- English
+(1, 4, 76, 'Term 1'),   -- Social Studies
+(1, 5, 95, 'Term 1'),   -- Computer Science
+(1, 6, 84, 'Term 1'),   -- Hindi
+(1, 7, 89, 'Term 1'),   -- Physics
+(1, 8, 91, 'Term 1');   -- Chemistry
